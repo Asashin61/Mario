@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Style de base pour les films */
+.film-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animation pour les transitions */
+#film-list {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+#film-carousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Style pour les boutons de modification et de suppression */
+.btn-modifier, .btn-delete {
+    background-color: #4CAF50; /* Vert pour le bouton Modifier */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-modifier:hover {
+    background-color: #45a049;
+}
+
+.btn-delete {
+    background-color: #f44336; /* Rouge pour le bouton Supprimer */
+}
+
+.btn-delete:hover {
+    background-color: #e53935;
+}

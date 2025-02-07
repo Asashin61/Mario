@@ -1,0 +1,103 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
+}
+
+.film-details-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #e53e3e; /* Bordure rouge discrète rappelant Mario */
+    background-image: url('https://www.example.com/star-pattern.png'); /* Une image discrète d'étoiles ou blocs en arrière-plan (facultatif) */
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+/* Titre de la page */
+.film-title {
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; /* Police inspirée des jeux rétro */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #f56c42; /* Une teinte rouge-orange pour rappeler Mario */
+}
+
+/* Mise en page de la grille */
+.film-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+}
+
+/* Informations du film */
+.film-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.film-info-item {
+    font-size: 1.125rem;
+    color: #4a5568;
+}
+
+.label {
+    font-weight: bold;
+    color: #2d3748;
+}
+
+/* Image du film */
+.film-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.film-image-img {
+    border-radius: 10px;
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton Retour à l'accueil */
+.back-button {
+    background-color: #f56c42; /* Rouge Mario */
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button:hover {
+    background-color: #e53e3e; /* Rouge plus foncé */
+    transform: scale(1.05);
+}
+
+.back-button::before {
+    content: ""; /* Icône de maison avant le texte */
+    font-size: 1.5rem;
+}
+
+/* Responsiveness */
+@media (min-width: 768px) {
+    .film-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

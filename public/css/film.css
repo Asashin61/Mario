@@ -1,0 +1,169 @@
+/* public/css/styles.css */
+
+.film-list {
+    display: flex;
+    flex-wrap: wrap;  /* Permet d'afficher plusieurs lignes de cartes */
+    gap: 20px; /* Espace entre les cartes */
+    justify-content: center; /* Centrer les cartes horizontalement */
+}
+
+.film-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%; /* Utilise 100% de la largeur disponible sur mobile */
+    max-width: 300px; /* Largeur maximale sur les grands écrans */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s; /* Animation pour l'effet hover */
+    text-align: center; /* Centrer le texte à l'intérieur de la carte */
+}
+
+.film-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.film-poster {
+    width: 100%; /* Prend 100% de la largeur du conteneur */
+    height: auto; /* Garde les proportions de l'image */
+    border-radius: 8px; /* Coins arrondis pour l'image */
+    margin-bottom: 15px; /* Espace entre l'image et le contenu */
+}
+
+.film-title {
+    font-size: 1.5rem; /* Taille du texte pour le titre */
+    font-weight: bold; /* Met le texte en gras */
+    color: #333; /* Couleur du texte */
+    margin: 10px 0; /* Espace au-dessus et au-dessous du titre */
+}
+
+.film-description {
+    color: #666; /* Couleur du texte de description */
+    margin: 10px 0; /* Espace au-dessus et au-dessous de la description */
+}
+
+.film-release-date {
+    font-style: italic; /* Italique pour la date de sortie */
+    color: #888; /* Couleur grise pour moins de visibilité */
+    margin: 10px 0; /* Espace au-dessus et au-dessous de la date */
+}
+
+.film-link {
+    display: inline-block; /* Pour que le lien soit un bloc en ligne */
+    margin-top: 10px; /* Espace au-dessus du lien */
+    padding: 10px 15px; /* Espace intérieur du bouton */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    border-radius: 5px; /* Coins arrondis pour le bouton */
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+.film-link:hover {
+    background-color: #0056b3; /* Couleur de fond lors du survol */
+}
+
+/* Styles pour le tableau */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Pour un effet de bordure unique */
+    margin-top: 20px; /* Espace au-dessus du tableau */
+}
+
+th {
+    background-color: #007bff; /* Couleur d'arrière-plan des en-têtes */
+    color: white; /* Couleur du texte des en-têtes */
+    padding: 12px; /* Espace à l'intérieur des en-têtes */
+}
+
+td {
+    text-align: left; /* Alignement du texte à gauche */
+    padding: 12px; /* Espace à l'intérieur des cellules */
+    border: 1px solid #ddd; /* Bordure autour des cellules */
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center; /* Centre les boutons de pagination */
+    margin-top: 20px; /* Espace au-dessus de la pagination */
+}
+
+.btn-pagination {
+    margin: 0 5px; /* Espacement entre les boutons */
+    padding: 8px 12px; /* Espacement intérieur */
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+.btn-pagination:hover {
+    background-color: #0056b3; /* Couleur lors du survol */
+}
+
+.btn-pagination.active {
+    background-color: #0056b3; /* Couleur pour la page active */
+    font-weight: bold; /* Met le texte en gras pour l'actif */
+}
+/* public/css/styles.css */
+
+/* public/css/styles.css */
+
+/* Styles généraux */
+body {
+    background-image: url('https://www.transparenttextures.com/patterns/paper.png'), url('https://i.imgur.com/JjZ0a0V.png'); /* Fond avec texture de papier et une image de fond de blocs */
+    background-repeat: repeat, no-repeat;
+    background-size: auto, cover; /* Ajuste la taille de l'image de fond */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Police ludique */
+}
+
+h2 {
+    text-shadow: 2px 2px #e63946; /* Ombre pour le titre */
+}
+
+/* Conteneur principal */
+.overflow-x-auto {
+    border: 3px solid #ffcc00; /* Bordure dorée pour le conteneur */
+    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre pour améliorer la lisibilité */
+}
+
+/* Styles pour le tableau */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Pour un effet de bordure unique */
+    margin-top: 20px; /* Espace au-dessus du tableau */
+}
+
+th {
+    background-color: #ff5733; /* Couleur d'arrière-plan rouge vif pour les en-têtes */
+    color: white; /* Couleur du texte des en-têtes */
+    padding: 12px; /* Espace à l'intérieur des en-têtes */
+}
+
+td {
+    text-align: left; /* Alignement du texte à gauche */
+    padding: 12px; /* Espace à l'intérieur des cellules */
+    border: 1px solid #ffcc00; /* Bordure autour des cellules */
+}
+
+/* Styles pour les messages */
+p {
+    font-size: 1.2rem; /* Taille du texte pour le message */
+    text-align: center; /* Centrer le texte */
+    color: #ff5733; /* Couleur du texte pour les messages */
+}
+
+/* Effets de bouton pour les actions (exemple d'utilisation future) */
+.btn {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    padding: 10px 20px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Supprime le soulignement */
+    transition: background-color 0.3s; /* Effet de transition */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Couleur lors du survol */
+}

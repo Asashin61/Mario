@@ -1,0 +1,109 @@
+/* Style général pour occuper tout l'écran */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #f9f9f9; /* Couleur d'arrière-plan épurée */
+    font-family: 'Roboto', sans-serif; /* Police professionnelle et moderne */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Conteneur principal du formulaire */
+.login-container {
+    background-color: #ffffff; /* Fond blanc pour un look professionnel */
+    width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet flottant */
+    text-align: center;
+}
+
+/* En-tête rouge avec une police moderne */
+.header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e60012; /* Rouge Mario */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Champs de saisie */
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd; /* Bordure subtile */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fefefe;
+    transition: border 0.3s;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #e60012; /* Rouge Mario en focus */
+    outline: none;
+}
+
+/* Placeholder styling */
+input::placeholder {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+/* Case à cocher "Se souvenir de moi" */
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Boutons */
+button {
+    background-color: #e60012; /* Rouge Mario */
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #c50010; /* Rouge plus foncé */
+    box-shadow: 0 4px 10px rgba(230, 0, 18, 0.3); /* Ombre dynamique au survol */
+}
+
+/* Lien "Mot de passe oublié" */
+.forgot-password {
+    display: block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #e60012;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #c50010;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%; /* Réduction sur mobile */
+    }
+}

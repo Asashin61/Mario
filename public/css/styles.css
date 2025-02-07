@@ -1,0 +1,115 @@
+/* Définition des couleurs du thème Mario */
+:root {
+    --mario-red: #FF4747; /* Rouge Mario */
+    --mario-blue: #1D50B8; /* Bleu Mario */
+    --mario-yellow: #FFDB00; /* Jaune Mario */
+    --mario-bg: linear-gradient(45deg, #FF4747, #1D50B8); /* Dégradé de fond Mario */
+}
+
+/* Conteneur principal de la page */
+.container {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Liste des films avec animation d'apparition */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animation d'apparition (fade-in) */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style des éléments de film */
+.film-item {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol des films */
+.film-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Style du titre du film */
+.film-title {
+    font-size: 1.6rem;
+    color: var(--mario-red);
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Effet de survol sur le titre du film */
+.film-title:hover {
+    color: white;
+    background-color: var(--mario-blue);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Boutons Modifier et Supprimer */
+.btn-modifier, .btn-delete {
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+/* Style du bouton Modifier */
+.btn-modifier {
+    background-color: var(--mario-yellow);
+    color: var(--mario-blue);
+    border-color: var(--mario-blue);
+}
+
+/* Effet de survol du bouton Modifier */
+.btn-modifier:hover {
+    background-color: var(--mario-blue);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Style du bouton Supprimer */
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+    border-color: #e53935;
+}
+
+/* Effet de survol du bouton Supprimer */
+.btn-delete:hover {
+    background-color: #e53935;
+    border-color: #c62828;
+    transform: scale(1.1);
+}
+
+/* Espacement entre les films */
+.space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Corps de la page */
+body {
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
