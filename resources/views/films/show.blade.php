@@ -29,11 +29,6 @@
                     <div class="film-info-item">
                         <span class="label">Durée :</span> {{ $film->length }} minutes
                     </div>
-
-                    <!-- Réalisateur -->
-                    <div class="film-info-item">
-                        <span class="label">Réalisateur :</span> {{ $film->idDirector }}
-                    </div>
                 </div>
 
                 <!-- Image du film (si disponible) -->

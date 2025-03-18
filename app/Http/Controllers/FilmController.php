@@ -58,11 +58,38 @@ class FilmController extends Controller
         $response = Http::post("{$this->baseUrl}/add", $request->only([
             'title', 'description', 'releaseYear', 'languageId', 'originalLanguageId', 
             'rentalDuration', 'rentalRate', 'length', 'replacementCost', 'rating', 
-            'lastUpdate', 'idDirector'
+            'lastUpdate'
         ]));
 
         return $response->json();
     }
+    
+    public function store(Request $request)
+    {
+        // Récupérer les données du formulaire
+        $response = Http::asForm()->post('http://localhost:8080/toad/film/add', [
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'releaseYear' => $request->input('release_year'),
+            'languageId' => $request->input('language_id'),
+            'originalLanguageId' => $request->input('original_language_id'),
+            'rentalDuration' => $request->input('rental_duration'),
+            'rentalRate' => $request->input('rental_rate'),
+            'length' => $request->input('length'),
+            'replacementCost' => $request->input('replacement_cost'),
+            'rating' => $request->input('rating'),
+            'lastUpdate' => $request->input('last_update'),
+        ]);
+    
+        if ($response->successful()) {
+            return redirect()->route('films.index')->with('success', 'Film ajouté avec succès.');
+        } else {
+            return back()->withErrors('Erreur lors de l\'ajout du film.')->withInput();
+        }
+    }
+    
+    
+
 
     /**
      * Afficher les détails d'un film
@@ -97,7 +124,7 @@ class FilmController extends Controller
      
          // Récupérer le film depuis la réponse de l'API
          $film = $response->json();
-     
+         
          // Si le film n'est pas trouvé, on redirige avec un message d'erreur
          if (!$film) {
              return redirect()->route('films.index')->with('error', 'Film introuvable.');
@@ -112,28 +139,32 @@ class FilmController extends Controller
      
      
      public function update(Request $request, $filmId)
-     {
-         // Validation des données de titre et de description
-         $request->validate([
-             'title' => 'required|string|max:255',
-             'description' => 'required|string',
-         ]);
+{
+    // Récupérer les données du formulaire
+    $response = Http::asForm()->put('http://localhost:8080/toad/film/update/' . $filmId, [
+        'title' => $request->input('title'),
+        'description' => $request->input('description'),
+        'releaseYear' => $request->input('release_year'),
+        'languageId' => $request->input('language_id'),
+        'originalLanguageId' => $request->input('original_language_id'),
+        'rentalDuration' => $request->input('rental_duration'),
+        'rentalRate' => $request->input('rental_rate'),
+        'length' => $request->input('length'),
+        'replacementCost' => $request->input('replacement_cost'),
+        'rating' => $request->input('rating'),
+        'lastUpdate' => $request->input('last_update'),
+    ]);
+
+    if ($response->successful()) {
+        return redirect()->route('films.index')->with('success', 'Film mis à jour avec succès.');
+    } else {
+        return back()->withErrors('Erreur lors de la mise à jour du film.')->withInput();
+    }
+}
+
+
      
-         // Récupération des données nécessaires à partir de la requête
-         $data = $request->only(['title', 'description']);
      
-         // Appel de l'API pour mettre à jour le film avec les nouvelles informations
-         $response = Http::put("{$this->baseUrl}/update/{$filmId}", $data);
-     
-         // Vérification de la réponse de l'API
-         if ($response->failed()) {
-             // Si la requête a échoué, renvoyer un message d'erreur
-             return redirect()->back()->with('error', 'Erreur lors de la mise à jour du film.');
-         }
-     
-         // Si la mise à jour a réussi, rediriger vers la page de détails du film avec un message de succès
-         return redirect()->route('films.show', $filmId)->with('success', 'Film mis à jour avec succès.');
-     }
      
 
     /**
@@ -154,29 +185,6 @@ class FilmController extends Controller
     return view('films.create');
 }
 
-public function store(Request $request)
-{
-    // Valider les données du formulaire
-    $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'releaseYear' => 'required|integer|min:1900|max:' . date('Y'),
-        'languageId' => 'required|integer',
-        'rentalRate' => 'required|numeric|min:0',
-        'length' => 'required|integer|min:0',
-        'rating' => 'required|string|max:5',
-    ]);
-
-    // Envoyer les données à l'API
-    $response = Http::post("{$this->baseUrl}/add", $validatedData);
-
-    // Vérifier si l'ajout a réussi
-    if ($response->successful()) {
-        return redirect()->route('films.index')->with('success', 'Film ajouté avec succès.');
-    } else {
-        return redirect()->back()->with('error', 'Erreur lors de l\'ajout du film.');
-    }
-}
 
     
 }

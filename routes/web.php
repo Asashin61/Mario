@@ -21,6 +21,7 @@ Route::get('/films/{id}', [FilmController::class, 'show'])->name('films.show');
 Route::get('/films/{id}/edit', [FilmController::class, 'edit'])->name('films.edit');
 Route::put('/films/{id}', [FilmController::class, 'update'])->name('films.update');
 Route::delete('/films/{id}', [FilmController::class, 'destroy'])->name('films.destroy');
+Route::post('/toad/film/add', [FilmController::class, 'store'])->name('films.store');
 
 // Route de recherche pour les films
 Route::get('/film/search', [FilmController::class, 'search'])->name('films.search');

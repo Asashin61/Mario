@@ -11,7 +11,7 @@
         <h1 class="text-3xl font-semibold text-center mb-8">Modifier le film : {{ $film['title'] }}</h1>
 
         <!-- Formulaire de modification -->
-        <form action="{{ route('films.update', $film['film_id']) }}" method="POST">
+        <form action="{{ route('films.update', $film['filmId']) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -41,19 +41,19 @@
             <!-- Champ année de sortie -->
             <div class="mb-4">
                 <label for="release_year" class="block">Année de sortie</label>
-                <input type="number" name="release_year" id="release_year" value="{{ old('release_year', $film['release_year']) }}" class="border p-2 w-full" required>
+                <input type="number" name="release_year" id="release_year" value="{{ old('release_year', $film['releaseYear']) }}" class="border p-2 w-full" required>
             </div>
 
             <!-- Champ durée de location -->
             <div class="mb-4">
                 <label for="rental_duration" class="block">Durée de location</label>
-                <input type="number" name="rental_duration" id="rental_duration" value="{{ old('rental_duration', $film['rental_duration']) }}" class="border p-2 w-full" required>
+                <input type="number" name="rental_duration" id="rental_duration" value="{{ old('rental_duration', $film['rentalDuration']) }}" class="border p-2 w-full" required>
             </div>
 
             <!-- Champ taux de location -->
             <div class="mb-4">
                 <label for="rental_rate" class="block">Taux de location</label>
-                <input type="number" name="rental_rate" id="rental_rate" value="{{ old('rental_rate', $film['rental_rate']) }}" class="border p-2 w-full" required>
+                <input type="number" name="rental_rate" id="rental_rate" value="{{ old('rental_rate', $film['rentalRate']) }}" class="border p-2 w-full" required>
             </div>
 
             <!-- Champ longueur -->
@@ -65,7 +65,7 @@
             <!-- Champ coût de remplacement -->
             <div class="mb-4">
                 <label for="replacement_cost" class="block">Coût de remplacement</label>
-                <input type="number" name="replacement_cost" id="replacement_cost" value="{{ old('replacement_cost', $film['replacement_cost']) }}" class="border p-2 w-full" required>
+                <input type="number" name="replacement_cost" id="replacement_cost" value="{{ old('replacement_cost', $film['replacementCost']) }}" class="border p-2 w-full" required>
             </div>
 
             <!-- Champ note -->
@@ -80,6 +80,14 @@
                 </select>
             </div>
 
+            <!-- Champ languageId caché -->
+            <input type="hidden" name="language_id" value="{{ old('languageId', $film['languageId']) }}">
+
+            <input type="hidden" name="original_language_id" value="{{ old('original_language_id', $film['originalLanguageId']) }}">
+
+            <!-- Champ last_update caché avec date actuelle au format requis -->
+            <input type="hidden" name="last_update" id="lastUpdate" value="{{ now()->format('Y-m-d H:i:s') }}">
+
             <!-- Bouton de soumission -->
             <div class="flex justify-center">
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded">
@@ -89,4 +97,5 @@
         </form>
     @endif
 </div>
+
 @endsection
