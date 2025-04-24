@@ -1,0 +1,171 @@
+/* Définition des couleurs du thème */
+:root {
+    --primary-color: #1d2d50; /* Bleu marine profond */
+    --secondary-color: #f8f9fa; /* Gris clair */
+    --accent-color: #008CBA; /* Bleu clair pour accent */
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --dark-gray: #333333;
+    --dark-blue: #121212; /* Bleu très foncé pour texte */
+}
+
+/* Conteneur principal de la page */
+.container {
+    background: var(--white);
+    padding: 4rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    margin: 2rem auto;
+}
+
+/* Animation d'apparition (fade-in) */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Formulaire */
+form {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Titres et Labels */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+label {
+    font-size: 1rem;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Champs de formulaire */
+input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Champs de texte (textarea) */
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Espacement entre les champs */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Style des cases à cocher (features) */
+.special-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.special-features label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--dark-gray);
+}
+
+/* Bouton d'envoi */
+button[type="submit"] {
+    padding: 12px 24px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Style pour les champs de formulaire au survol */
+input:hover, textarea:hover, select:hover {
+    border-color: var(--primary-color);
+}
+
+/* Zone de texte (description) */
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Liste des erreurs de validation */
+.error-message {
+    color: #e53935;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Suppression du focus d’éléments non sélectionnés */
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--accent-color);
+    outline: none;
+}
+
+/* Section cachée des éléments */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Disposition globale de la page */
+body {
+    background-color: var(--light-gray);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mise en page mobile-friendly */
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem;
+    }
+    
+    button[type="submit"] {
+        width: 100%;
+    }
+
+    .special-features {
+        grid-template-columns: 1fr;
+    }
+}

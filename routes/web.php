@@ -1,42 +1,51 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\LoginController;
+//use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
 
-// Route principale pour afficher la liste des films
-Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+// Routes accessibles sans authentification
+// Route::get('/login', function () {
+//      return view('auth.login'); // Assure-toi que la page login existe
+// })->name('login');
 
-// Rediriger vers la liste des films par défaut
-Route::get('/', function () {
-    return redirect()->route('films.index'); // Redirige vers la liste des films
-})->name('home');
+//require __DIR__.'/auth.php';
 
-// Routes pour les films
-Route::get('/films/create', [FilmController::class, 'create'])->name('films.create');
-Route::post('/films', [FilmController::class, 'store'])->name('films.store');
-Route::get('/films/{id}', [FilmController::class, 'show'])->name('films.show');
-Route::get('/films/{id}/edit', [FilmController::class, 'edit'])->name('films.edit');
-Route::put('/films/{id}', [FilmController::class, 'update'])->name('films.update');
-Route::delete('/films/{id}', [FilmController::class, 'destroy'])->name('films.destroy');
-Route::post('/toad/film/add', [FilmController::class, 'store'])->name('films.store');
+// Routes protégées par auth
+//Route::middleware(['auth'])->group(function () {
+    // Routes pour les films
+    Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+    Route::get('/films/create', [FilmController::class, 'create'])->name('films.create');
+    Route::post('/films', [FilmController::class, 'store'])->name('films.store');
+    Route::get('/films/{id}', [FilmController::class, 'show'])->name('films.show');
+    Route::get('/films/{id}/edit', [FilmController::class, 'edit'])->name('films.edit');
+    Route::put('/films/{id}', [FilmController::class, 'update'])->name('films.update');
+    Route::delete('/films/{id}', [FilmController::class, 'destroy'])->name('films.destroy');
+    Route::post('/toad/film/add', [FilmController::class, 'store'])->name('films.store');
+    Route::get('/film/search', [FilmController::class, 'search'])->name('films.search');
 
-// Route de recherche pour les films
-Route::get('/film/search', [FilmController::class, 'search'])->name('films.search');
+    // Routes pour l'inventaire
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+    Route::delete('/inventory/{inventoryId}', [InventoryController::class, 'destroy'])->name('inventory.destroy');
+    Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
+    Route::post('/toad/inventory/add', [InventoryController::class, 'store'])->name('inventory.store');
 
-// Routes pour l'inventaire
-Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 
-// Routes liées au profil de l'utilisateur
-Route::middleware('auth')->group(function () {
+    // Routes liées au profil de l'utilisateur
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-// Route de déconnexion
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::get('/', function () {
+        return view('login_staff');
+    });
+    Route::post('/login_staff', [LoginController::class, 'login'])->name('login_staff');
 
-require __DIR__.'/auth.php';
+    // Route de déconnexion
+    //Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+//});
+
+//require __DIR__.'/auth.php';

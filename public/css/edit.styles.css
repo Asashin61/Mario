@@ -1,84 +1,159 @@
-/* Général */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+/* Variables de couleurs */
+:root {
+    --primary-bg-color: #ffffff;
+    --secondary-bg-color: #f8f9fa;
+    --button-color: #4CAF50; /* Vert pour le bouton */
+    --focus-ring-color: #f39c12; /* Couleur de l'anneau de focus */
+    --border-color: #ddd;
+    --text-color: #333;
+    --input-bg-color: #fafafa;
+    --label-color: #555;
 }
 
-/* Conteneur de la page */
+/* Mise en forme du conteneur principal */
 .container {
     max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-/* Titre de la page */
-.title {
+/* Titres */
+h1 {
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 30px;
-    color: #4CAF50; /* Vert d'accent */
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Zone d'erreurs */
+.text-red-500 {
+    color: #e74c3c;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* Formulaire */
-.edit-film-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+form {
+    background-color: var(--primary-bg-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #e74c3c;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
+label {
+    font-size: 1.125rem;
+    color: var(--label-color);
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.form-control {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+/* Champs de saisie */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
     width: 100%;
-    box-sizing: border-box;
-    background-color: #f7f7f7;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
     transition: border-color 0.3s ease;
 }
 
-.form-control:focus {
-    border-color: #4CAF50; /* Bordure verte lors du focus */
+/* Focus sur les champs de saisie */
+input:focus,
+textarea:focus,
+select:focus {
     outline: none;
-    background-color: #fff;
+    border-color: var(--button-color);
+    box-shadow: 0 0 5px var(--button-color);
 }
 
-.error {
-    color: #ff6347;
-    font-size: 0.875rem;
-    margin-top: 5px;
+/* Texte area (description) */
+textarea {
+    height: 150px;
+    resize: vertical;
 }
 
+/* Bouton Mise à jour - visible sans survol */
 button {
-    padding: 12px 20px;
-    background-color: #4CAF50;
+    padding: 1rem 2rem;
+    background-color: var(--button-color);
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 1.5rem;
+    text-align: center;  /* Ajout pour aligner le texte au centre */
+    opacity: 1;  /* Le bouton est toujours visible */
 }
 
+/* Le bouton n'a pas d'effet au survol */
 button:hover {
-    background-color: #45a049;
+    background-color: var(--button-color); /* Pas de changement au survol */
+    transform: none; 
 }
 
+/* Focus sur le bouton */
 button:focus {
     outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring-color);
+}
+
+/* Champs cachés (inputs non visibles) */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Espacement des sections du formulaire */
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+/* Style pour les messages d'erreur */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+ul li {
+    color: #e74c3c;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        padding: 0.8rem;
+    }
+
+    button {
+        padding: 1rem 1.5rem;
+    }
 }
