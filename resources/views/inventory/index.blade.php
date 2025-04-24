@@ -125,6 +125,7 @@
                         <th class="px-4 py-2 text-left">Quantité</th>
                         <th class="px-4 py-2 text-left">Adresse</th>
                         <th class="px-4 py-2 text-left">District</th>
+                        <th class="px-4 py-2 text-left">Action</th> <!-- Colonne pour l'action de suppression -->
                     </tr>
                 </thead>
                 <tbody>
@@ -134,6 +135,16 @@
                             <td class="px-4 py-2">{{ isset($stock->quantity) ? $stock->quantity : 'Quantité non définie' }}</td>
                             <td class="px-4 py-2">{{ isset($stock->address) ? $stock->address : 'Adresse non définie' }}</td>
                             <td class="px-4 py-2">{{ isset($stock->district) ? $stock->district : 'District non défini' }}</td>
+                            <td class="px-4 py-2">
+                                <!-- Formulaire pour supprimer un stock -->
+                                <form action="{{ route('inventory.destroy', $stock->filmId) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-mario-red text-black py-1 px-3 rounded hover:bg-red-700 transition-colors">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
