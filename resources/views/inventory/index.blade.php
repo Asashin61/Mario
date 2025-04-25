@@ -113,7 +113,7 @@
 
     <div class="container mx-auto p-8">
         @php
-            $response = @file_get_contents('http://localhost:8080/toad/inventory/getStockByStore');
+            $response = @file_get_contents('http://localhost:8180/toad/inventory/getStockByStore');
             $stocks = $response ? json_decode($response) : [];
         @endphp
 
