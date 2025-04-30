@@ -29,6 +29,15 @@
                     <div class="film-info-item">
                         <span class="label">Durée :</span> {{ $film->length }} minutes
                     </div>
+
+                    <div class="film-info-item">
+                        <span class="label">Nombre d'exemplaires total:</span>
+                        @foreach($stockFilm as $stock)
+                            <div>
+                                Magasin {{ $stock->storeId }}: {{ $stock->nombreExemplaire }} exemplaires
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <!-- Image du film (si disponible) -->
@@ -36,6 +45,9 @@
                     <img src="https://via.placeholder.com/150" alt="Image du film" class="film-image-img">
                 </div>
             </div>
+
+            <!-- FilmId caché -->
+            <input type="hidden" name="filmId" value="{{ $film->filmId }}">
 
             <!-- Bouton Retour à la page d'accueil -->
             <div class="mt-6 text-center">

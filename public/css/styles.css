@@ -131,10 +131,10 @@
 
 /* Espacement entre les films */
 .space-y-6 {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-}
+  }
 
 /* Corps de la page */
 body {
@@ -165,8 +165,7 @@ body {
 }
 
 .film-item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    min-width: 250px;
-    max-width: 300px;
-}
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }

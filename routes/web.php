@@ -42,7 +42,7 @@ use App\Http\Controllers\ProfileController;
     Route::get('/', function () {
         return view('login_staff');
     });
-    Route::post('/login_staff', [LoginController::class, 'login'])->name('login_staff');
+    Route::post('/', [LoginController::class, 'login'])->name('login_staff');
 
     // Route de déconnexion
     //Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

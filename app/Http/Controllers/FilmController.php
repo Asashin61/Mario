@@ -15,35 +15,49 @@ class FilmController extends Controller
     $envUrl = env('ENV_URL');
     $envPort = env('ENV_PORT');
     $endpoint = '/toad/film/all';
-    $data = $request->all();
-    $response = Http::get($envUrl . $envPort . $endpoint, $data);
 
-        if ($response->successful()) {
-            $films = $response->json();
+    $response = Http::get($envUrl . $envPort . $endpoint);
+
+    $films = [];
+
+    if ($response->successful()) {
+        $films = $response->json();
+
+        if ($request->filled('search')) {
+            $search = strtolower($request->input('search'));
+
+            $films = array_filter($films, function ($film) use ($search) {
+                return str_contains(strtolower($film['title']), $search);
+            });
         }
+    }
 
-    return view('films.index',compact('films'));
+    return view('films.index', compact('films'));
 }
 
 
 
 
-    // public function search(Request $request)
-    // {
-    // }
-    // // /**
-    // //  * Ajouter un film
-    // //  */
-    // // public function addFilm(Request $request)
-    // // {
-    // //     $response = Http::post("{$this->baseUrl}/add", $request->only([
-    // //         'title', 'description', 'releaseYear', 'languageId', 'originalLanguageId', 
-    // //          'rentalDuration', 'rentalRate', 'length', 'replacementCost', 'rating', 
-    // //         'lastUpdate'
-    // //     ]));
 
-    // //     return $response->json();
-    // // }
+public function search(Request $request)
+{
+    $envUrl = env('ENV_URL');
+    $envPort = env('ENV_PORT');
+    $endpoint = '/toad/film/search'; // à adapter selon ton API réelle
+
+    $query = $request->input('query'); // ou autre nom selon ton input
+    $response = Http::get($envUrl . $envPort . $endpoint, [
+        'query' => $query,
+    ]);
+
+    if ($response->successful()) {
+        $films = $response->json();
+        return view('films.index', compact('films'));
+    }
+
+    return redirect()->route('films.index')->with('error', 'Erreur lors de la recherche.');
+}
+
     
     public function store(Request $request)
     {
@@ -74,19 +88,26 @@ class FilmController extends Controller
     $envUrl = env('ENV_URL');
     $envPort = env('ENV_PORT');
     $endpointDetailFilm = '/toad/film/getById';
+    $endpointStockFilm = '/toad/film/stockFilm/getById';
     $data = $request->all();
 
-    // Correction de la concaténation de l'URL pour la requête API
-    $response = Http::get($envUrl . $envPort . $endpointDetailFilm, ['id' => $id, $data]);
-    $film = json_decode($response);
+    $responseFilm = Http::get($envUrl . $envPort . $endpointDetailFilm, ['id' => $id, $data]);
+    $film = json_decode($responseFilm);
 
-    // Vérification si le film existe
+    $responseStockFilm = Http::get($envUrl . $envPort . $endpointStockFilm, ['id' => $id, $data]);
+    $stockFilm = json_decode($responseStockFilm);
+
     if (!$film) {
         abort(404, 'Film non trouvé.');
     }
 
-    return view('films.show', compact('film'));
+    if (!$stockFilm) {
+        abort(404, 'Informations de stock non trouvées pour ce film.');
+    }
+
+    return view('films.show', compact('film', 'stockFilm'));
 }
+
 
 
     /**
