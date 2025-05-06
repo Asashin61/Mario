@@ -88,24 +88,16 @@ public function search(Request $request)
     $envUrl = env('ENV_URL');
     $envPort = env('ENV_PORT');
     $endpointDetailFilm = '/toad/film/getById';
-    $endpointStockFilm = '/toad/film/stockFilm/getById';
     $data = $request->all();
 
     $responseFilm = Http::get($envUrl . $envPort . $endpointDetailFilm, ['id' => $id, $data]);
     $film = json_decode($responseFilm);
 
-    $responseStockFilm = Http::get($envUrl . $envPort . $endpointStockFilm, ['id' => $id, $data]);
-    $stockFilm = json_decode($responseStockFilm);
-
     if (!$film) {
         abort(404, 'Film non trouvé.');
     }
 
-    if (!$stockFilm) {
-        abort(404, 'Informations de stock non trouvées pour ce film.');
-    }
-
-    return view('films.show', compact('film', 'stockFilm'));
+    return view('films.show', compact('film'));
 }
 
 

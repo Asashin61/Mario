@@ -27,24 +27,26 @@ class InventoryController extends Controller
 
     public function destroy($filmId, Request $request)
 {
-    $envUrl           = env('ENV_URL');   
-    $envPort          = env('ENV_PORT');
-    $endpointDelete   = '/toad/inventory/delete';
-    $url              = "{$envUrl}{$envPort}{$endpointDelete}/{$filmId}";
+    $envUrl = env('ENV_URL');   
+    $envPort = env('ENV_PORT');
+    $endpointDelete = '/toad/inventory/deleteDVD'; 
+    $url = "{$envUrl}{$envPort}{$endpointDelete}/{$filmId}";
 
     $response = Http::delete($url);
-
     if ($response->failed()) {
-        Log::error("Erreur lors de la suppression du DVD (filmId={$filmId}) : " . $response->body());
         return redirect()
             ->route('inventory.index')
             ->with('error', 'Erreur lors de la suppression du DVD.');
     }
 
+    // Ici on récupère simplement le texte renvoyé
+    $message = $response->body();
+
     return redirect()
         ->route('inventory.index')
-        ->with('success', 'DVD supprimé avec succès.');
+        ->with('success', $message);
 }
+
 
 
 public function store(Request $request)
