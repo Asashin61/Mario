@@ -27,25 +27,39 @@ class InventoryController extends Controller
 
     public function destroy($filmId, Request $request)
 {
-    $envUrl = env('ENV_URL');   
-    $envPort = env('ENV_PORT');
-    $endpointDelete = '/toad/inventory/deleteDVD'; 
-    $url = "{$envUrl}{$envPort}{$endpointDelete}/{$filmId}";
+    $envUrl      = env('ENV_URL');
+    $envPort     = env('ENV_PORT');
 
-    $response = Http::delete($url);
-    if ($response->failed()) {
+    // 1) Récupérer l’inventoryId à partir du filmId
+    $endpointAvail = '/toad/inventory/available/getById';
+    $responseAvail = Http::get(
+        "{$envUrl}{$envPort}{$endpointAvail}",
+        ['id' => $filmId]
+    );
+
+    if ($responseAvail->failed()) {
         return redirect()
             ->route('inventory.index')
-            ->with('error', 'Erreur lors de la suppression du DVD.');
+            ->with('error', "Impossible de récupérer l'inventoryId pour le film #{$filmId}.");
     }
 
-    // Ici on récupère simplement le texte renvoyé
-    $message = $response->body();
+    $inventoryId = intval($responseAvail->body());
+
+    $endpointDel = '/toad/inventory/delete';
+    $urlDel      = "{$envUrl}{$envPort}{$endpointDel}/{$inventoryId}";
+    $responseDel = Http::delete($urlDel);
+
+    if ($responseDel->failed()) {
+        return redirect()
+            ->route('inventory.index')
+            ->with('error', "Erreur lors de la suppression de l’inventaire #{$inventoryId}.");
+    }
 
     return redirect()
         ->route('inventory.index')
-        ->with('success', $message);
+        ->with('success', $responseDel->body() ?: 'Inventaire supprimé avec succès.');
 }
+
 
 
 

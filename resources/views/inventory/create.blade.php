@@ -19,6 +19,7 @@
                 </select>
             </div>
 
+            
             <!-- Champ store_id -->
             <div class="form-group mb-6 text-center">
                 <label for="store_id" class="block text-lg font-medium text-gray-700">ID du Magasin</label>
