@@ -29,15 +29,6 @@
                     <div class="film-info-item">
                         <span class="label">Durée :</span> {{ $film->length }} minutes
                     </div>
-
-                    <div class="film-info-item">
-                        <span class="label">Nombre d'exemplaires total:</span>
-                        @foreach($stockFilm as $stock)
-                            <div>
-                                Magasin {{ $stock->storeId }}: {{ $stock->nombreExemplaire }} exemplaires
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
 
                 <!-- Image du film (si disponible) -->
